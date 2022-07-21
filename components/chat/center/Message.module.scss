@@ -1,0 +1,59 @@
+$ctx-menu-open-time: 0.3s;
+
+.Message {
+  width: 100%;
+  margin-bottom: 4px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  .bubble {
+    position: relative; // very important to use context menu
+    max-width: 60%;
+    padding: 0.6rem 1rem;
+    border-radius: 0.8rem;
+    background-color: #dfdfdf;
+
+    span {
+      word-break: break-all;
+    }
+
+    .context-menu {
+      position: absolute;
+      background-color: #ffffff;
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0.1rem 0.2rem 0.1rem #bdbdbd;
+      // width: 300px;
+      // height: 400px;
+      min-width: 150px;
+      z-index: 100;
+      transition: opacity $ctx-menu-open-time cubic-bezier(0.2, 0, 0.2, 1),
+        transform $ctx-menu-open-time cubic-bezier(0.2, 0, 0.2, 1) !important;
+    }
+
+    .open {
+      // visibility: visible;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .close {
+      // visibility: hidden;
+      opacity: 0;
+      transform: scale(0);
+    }
+  }
+}
+
+.my-message {
+  flex-direction: row-reverse;
+
+  .bubble {
+    background-color: #c8eb9d;
+  }
+}
+
+.your-message {
+  flex-direction: row;
+}
