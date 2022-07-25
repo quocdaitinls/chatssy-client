@@ -1,6 +1,7 @@
 $besideColWidth: calc(vars.$ChatLeftWidth + vars.$ChatRightWidth);
 
 .ChatCenter {
+  position: relative;
   width: calc(100% - $besideColWidth);
   height: 100%;
   transition: width vars.$ChatRightSlippingTime;

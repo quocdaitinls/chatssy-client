@@ -4,7 +4,6 @@ import {isUndefined} from "utils";
 
 type ChatContextValue = {
   chatAppRef: RefObject<HTMLDivElement>;
-  messagesViewRef: RefObject<HTMLDivElement>;
   currentId: string;
   openRightSide: boolean;
   toggleOpenRightSide: (open?: boolean) => void;
@@ -27,7 +26,6 @@ export const useChatCtx = () => React.useContext(ChatContext);
 export const ChatProvider: React.FC<PropsWithChildren> = (props) => {
   const router = useRouter();
   const chatAppRef = useRef<HTMLDivElement>(null);
-  const messagesViewRef = useRef<HTMLDivElement>(null);
   const [openRightSide, setOpenRightSide] = useState(false);
   const [rightSide, setRightSide] = useState<ChatRightSide>(
     ChatRightSide.PROFILE
@@ -46,7 +44,6 @@ export const ChatProvider: React.FC<PropsWithChildren> = (props) => {
 
   const value = {
     chatAppRef,
-    messagesViewRef,
     currentId: router.query.id as string,
     openRightSide,
     toggleOpenRightSide,

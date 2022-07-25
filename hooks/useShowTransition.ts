@@ -1,7 +1,10 @@
-import {useEffect, useRef, useState} from "react";
-import {buildClassName} from "utils";
+import {useEffect, useState} from "react";
+import styles from "styles/opacity-transition.module.scss";
+import {sassClasses} from "utils";
 
-const CLOSE_DURATION = 350;
+const CLOSE_DURATION = 200;
+
+const cl = sassClasses(styles);
 
 export type ClassNamesOptions = {
   open: string;
@@ -10,7 +13,6 @@ export type ClassNamesOptions = {
 
 export const useShowTransition = (
   openState: boolean,
-  classNames: ClassNamesOptions,
   onCloseTransitionEnd?: () => void
 ) => {
   const [isOpen, setIsOpen] = useState(!openState);
@@ -25,5 +27,5 @@ export const useShowTransition = (
     }
   }, [openState, onCloseTransitionEnd]);
 
-  return isOpen ? classNames.open : classNames.close;
+  return cl(["opacity-transition", isOpen ? "open" : "close"]);
 };

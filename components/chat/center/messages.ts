@@ -2,7 +2,6 @@ export type MessageTest = {
   id: string | number;
   message: string;
   time: Date;
-  isMyMessage: boolean;
   send_by: string;
 };
 
@@ -13,7 +12,6 @@ export const message_data = [
       "Began elsewhere last inhabiting parlors dwelling roof garrets reached end by. ",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 2,
@@ -21,7 +19,6 @@ export const message_data = [
       "How weeks frankness dissimilar total only civility looked desire. Preference vulgar would pleased sussex shameless greatly water. Think convinced in easily formal greatest ladyship mile water listening studied delay understood. ",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 3,
@@ -29,28 +26,24 @@ export const message_data = [
       "Answer song son described. Shortly period things sure hundred advanced dear on depart body however moonlight goodness. ",
     time: new Date(),
     send_by: "2",
-    isMyMessage: false,
   },
   {
     id: 4,
     message: "Feel forty drawings boisterous repulsive.",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 5,
     message: "Merely wonder strictly friend see walls. ",
     time: new Date(),
     send_by: "3",
-    isMyMessage: false,
   },
   {
     id: 6,
     message: "Interest desire instantly not beyond downs.",
     time: new Date(),
     send_by: "3",
-    isMyMessage: false,
   },
   {
     id: 7,
@@ -58,7 +51,6 @@ export const message_data = [
       "Propriety inquiry temper assistance timed welcomed small mr advice itself.",
     time: new Date(),
     send_by: "2",
-    isMyMessage: false,
   },
   {
     id: 8,
@@ -66,7 +58,6 @@ export const message_data = [
       "Stimulated small visitor appetite end outweigh piqued cottage house get curiosity females downs. ",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 9,
@@ -74,14 +65,12 @@ export const message_data = [
       "Suspected some wholly wisdom extremity general vanity. Was continue three extended mrs temper welcomed however stairs cottage does share talked forty months burst inhabiting.",
     time: new Date(),
     send_by: "2",
-    isMyMessage: false,
   },
   {
     id: 10,
     message: "Ample country prevailed eagerness figure loud zealously so he.",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 11,
@@ -89,7 +78,6 @@ export const message_data = [
       "Form worth shew inhabit branched rose motionless but pretty hung.",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 12,
@@ -97,7 +85,6 @@ export const message_data = [
       "Meant depart weeks strangers face staying produced entrance share service private relied.",
     time: new Date(),
     send_by: "3",
-    isMyMessage: false,
   },
   {
     id: 13,
@@ -105,7 +92,6 @@ export const message_data = [
       "Occasional terminated case down engaged almost match agreeable busy use unknown brought settled. Covered musical celebrated began can neglected education perpetual fifteen decay.",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
   {
     id: 14,
@@ -113,7 +99,6 @@ export const message_data = [
       "Propriety inquiry temper assistance timed welcomed small mr advice itself.",
     time: new Date(),
     send_by: "4",
-    isMyMessage: false,
   },
   {
     id: 15,
@@ -121,7 +106,6 @@ export const message_data = [
       "Stimulated small visitor appetite end outweigh piqued cottage house get curiosity females downs. ",
     time: new Date(),
     send_by: "4",
-    isMyMessage: false,
   },
   {
     id: 16,
@@ -129,7 +113,6 @@ export const message_data = [
       "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
     time: new Date(),
     send_by: "1",
-    isMyMessage: true,
   },
 ];
 

@@ -19,7 +19,7 @@ const EmojiPicker: React.FC<PickerProps> = (props) => {
     import("emoji-mart").then(({Picker}) => {
       new Picker({...props, data, ref} as PickerProps);
     });
-  }, []);
+  }, [props]);
 
   return <div ref={ref} />;
 };
@@ -28,19 +28,28 @@ type MessageInputProps = {};
 
 export const MessageInput: React.FC<MessageInputProps> = (props) => {
   const [message, setMessage] = useState("");
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleClick = () => {
+    const input = inputRef.current;
+    if (!input) return;
+
+    input.focus();
+  };
 
   const handleEnterMessage = (ev: ChangeEvent<HTMLInputElement>) => {
     setMessage(ev.target.value);
   };
 
   return (
-    <div className={cl("MessageInput")}>
+    <div className={cl("MessageInput")} onClick={handleClick}>
       <div className={cl("input-container")}>
         <div className={cl("icon-box")}>
           <BsEmojiSunglasses className={cl("input_icon")} />
         </div>
         <input
           className={cl("enter-field")}
+          ref={inputRef}
           placeholder='Enter Message'
           type='text'
           value={message}

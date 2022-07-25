@@ -8,14 +8,14 @@ export const useContextMenuHandlers = () => {
   const [contextMenuPosition, setContextMenuPosition] =
     useState<AbleUndefined<VPP>>(undefined);
 
-  const onContextMenu = useCallback(
+  const openContextMenu = useCallback(
     (ev: React.MouseEvent) => {
       ev.preventDefault();
 
       if (contextMenuPosition) return;
 
       setIsContextMenuOpen(true);
-      setContextMenuPosition(VPP.createClickVPP(ev));
+      setContextMenuPosition(VPP.createMouseVPP(ev));
     },
     [contextMenuPosition]
   );
@@ -31,7 +31,7 @@ export const useContextMenuHandlers = () => {
   return {
     isContextMenuOpen,
     contextMenuPosition,
-    onContextMenu,
+    openContextMenu,
     closeContextMenu,
     clearContextMenuPosition,
   };

@@ -1,3 +1,4 @@
+import {ChatCenterContextProvider} from "contexts/ChatCenterContext";
 import {useChatCtx} from "contexts/ChatContext";
 import {sassClasses} from "utils";
 import {ChatCenter} from "./center/ChatCenter";
@@ -13,7 +14,9 @@ export const ChatApp = () => {
   return (
     <div ref={chatAppRef} className={cl("ChatApp")}>
       <ChatLeft />
-      <ChatCenter />
+      <ChatCenterContextProvider>
+        <ChatCenter />
+      </ChatCenterContextProvider>
       <ChatRight />
     </div>
   );

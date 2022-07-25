@@ -1,9 +1,8 @@
 import React from "react";
 import {sassClasses} from "utils";
-import styles from "./MessageGroup.module.scss";
-import {MessageTest, message_data} from "./messages";
 import {Message} from "./Message";
-import {Avatar} from "@chakra-ui/react";
+import styles from "./MessageGroup.module.scss";
+import {MessageTest} from "./messages";
 
 const cl = sassClasses(styles);
 
@@ -12,20 +11,20 @@ export type MessageGroupProps = {
 };
 
 export const MessageGroup: React.FC<MessageGroupProps> = ({data}) => {
-  const isMyGroup = data[0].isMyMessage;
+  const checkIsMyMessage = (message: MessageTest) => message.send_by == "1";
+
+  const checkIsLastMessage = (index: number) => index === data.length - 1;
 
   return (
-    <div
-      className={cl(["MessageGroup", isMyGroup ? "my-group" : "your-group"])}
-    >
-      <div className={cl("content")}>
-        <Avatar className={cl("avatar")} />
-        <div className={cl("messages")}>
-          {data.map((message) => (
-            <Message key={message.id} data={message} />
-          ))}
-        </div>
-      </div>
+    <div className={cl("MessageGroup")}>
+      {data.map((message, index) => (
+        <Message
+          key={message.id}
+          data={message}
+          isMyMessage={checkIsMyMessage(message)}
+          isLastMessage={checkIsLastMessage(index)}
+        />
+      ))}
     </div>
   );
 };

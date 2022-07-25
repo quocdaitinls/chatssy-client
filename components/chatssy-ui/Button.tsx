@@ -4,7 +4,7 @@ import React, {
   RefObject,
   useCallback,
 } from "react";
-import {AppliedStyle, applyStyle, getCss, sassClasses, VPP} from "utils";
+import {applyStyle, getCss, sassClasses, VPP} from "utils";
 import styles from "./Button.module.scss";
 
 const cl = sassClasses(styles);
@@ -28,18 +28,16 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
       if (!button) return () => {};
 
       const createRipple = (ev: React.MouseEvent) => {
-        const clickVPP = VPP.createClickVPP(ev, button);
+        const clickVPP = VPP.createMouseVPP(ev).convertOrigin(button);
 
         let ripple = document.createElement("span");
 
-        const style: AppliedStyle = {
+        ripple.className = cl("ripple");
+        applyStyle(ripple, {
           backgroundColor: getCss(button, "color"),
           left: `${clickVPP.value.x}px`,
           top: `${clickVPP.value.y}px`,
-        };
-
-        ripple.className = cl("ripple");
-        applyStyle(ripple, style);
+        });
 
         return ripple;
       };
@@ -63,14 +61,28 @@ export const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
     if (props?.onClick) props.onClick(ev);
   };
 
+  const fullClassName = cl(["Button"], className);
+
   return (
     <button
       ref={buttonRef}
-      className={cl("Button", className)}
+      className={fullClassName}
       {...props}
       onClick={handleClick}
     >
       {children}
     </button>
+  );
+};
+
+export const IconButton: React.FC<ButtonProps> = (props) => {
+  return (
+    <Button
+      rippleEffect
+      {...props}
+      className={cl("IconButton", props.className)}
+    >
+      {props.children}
+    </Button>
   );
 };

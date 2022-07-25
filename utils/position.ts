@@ -1,4 +1,9 @@
-import {isNumber} from "./checker";
+import {isNull, isUndefined} from "./checker";
+
+export interface MousePosition {
+  clientX: number;
+  clientY: number;
+}
 
 export class Position {
   x: number;
@@ -20,31 +25,14 @@ export class Position {
 
 // Viewport Position
 export class VPP {
+  private static viewportOrigin = new VPP(0, 0, null);
+
   _value: Position;
-  _origin: HTMLElement | undefined;
+  _origin: VPP | null;
 
-  constructor(value: Position, origin?: HTMLElement);
-  constructor(x: number, y: number, origin?: HTMLElement);
-  constructor(
-    arg1: Position | number,
-    arg2?: HTMLElement | number,
-    arg3?: HTMLElement
-  ) {
-    const [value, origin] = VPP.parseVPPConstructorArg(arg1, arg2, arg3);
-
-    this._value = value;
-    this._origin = origin;
-  }
-
-  private static parseVPPConstructorArg(
-    arg1: Position | number,
-    arg2?: HTMLElement | number,
-    arg3?: HTMLElement
-  ): [Position, HTMLElement | undefined] {
-    if (isNumber(arg1) && isNumber(arg2)) {
-      return [new Position(arg1, arg2), arg3];
-    }
-    return [arg1 as Position, arg2 as HTMLElement | undefined];
+  constructor(x: number, y: number, origin?: HTMLElement | VPP | null) {
+    this._value = new Position(x, y);
+    this._origin = VPP.buildOrigin(origin);
   }
 
   get value() {
@@ -55,19 +43,22 @@ export class VPP {
     return this._origin;
   }
 
-  static getHTMLElementVPP(element: HTMLElement) {
+  static createHTMLElementVPP(element: HTMLElement) {
     const {x, y} = element.getBoundingClientRect();
     return new VPP(x, y);
   }
 
-  static createClickVPP(ev: React.MouseEvent, origin?: HTMLElement) {
-    const click = new VPP(ev.clientX, ev.clientY);
-    return click.convertOrigin(origin);
+  static createMouseVPP<E extends MousePosition>(ev: E) {
+    const {clientX, clientY} = ev;
+    return new VPP(clientX, clientY);
   }
 
-  getOriginVPP() {
-    if (this._origin) return VPP.getHTMLElementVPP(this._origin);
-    return new VPP(0, 0);
+  private static buildOrigin(origin?: HTMLElement | VPP | null) {
+    return isUndefined(origin) || isNull(origin)
+      ? null
+      : origin instanceof VPP
+      ? origin
+      : VPP.createHTMLElementVPP(origin);
   }
 
   getRelativeTo(root: VPP): Position {
@@ -79,16 +70,14 @@ export class VPP {
     return this._value.minus(root.value);
   }
 
-  convertOrigin(newOrigin?: HTMLElement) {
-    const oldOriginVPP = this.getOriginVPP();
-    const newOriginVPP = newOrigin
-      ? VPP.getHTMLElementVPP(newOrigin)
-      : new VPP(0, 0);
+  convertOrigin(newOrigin?: HTMLElement | VPP | null) {
+    const oldOriginVPP = this._origin ?? VPP.viewportOrigin;
+    const newOriginVPP = VPP.buildOrigin(newOrigin) ?? VPP.viewportOrigin;
 
     const oldOriginRelativeToNewOrigin =
       oldOriginVPP.getRelativeTo(newOriginVPP);
     const newValue = this._value.plus(oldOriginRelativeToNewOrigin);
 
-    return new VPP(newValue, newOrigin);
+    return new VPP(newValue.x, newValue.y, newOrigin);
   }
 }

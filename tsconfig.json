@@ -2,6 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
+      "@styles/*": ["styles/*"],
       "@chatssy-ui": ["components/chatssy-ui/index"]
     },
     "target": "es5",

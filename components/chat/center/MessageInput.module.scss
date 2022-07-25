@@ -3,34 +3,14 @@ $send_icon_size: 1.8rem;
 $input_icon_size: 1.5rem;
 
 .MessageInput {
-  padding: 0.5rem 0 1.5rem;
+  padding: 0.2rem 0 0.7rem 1.5rem;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
 
-  // .field_box {
-  //   width: 80%;
-  //   max-width: 600px;
-
-  //   // .enter_field {
-  //   // }
-
-  //   .input_icon-btn {
-  //     display: flex;
-  //     flex-direction: row;
-  //     justify-content: center;
-  //     align-items: center;
-  //     border-radius: 50%;
-
-  //     .input_icon {
-  //       height: $input_icon_size;
-  //       width: $input_icon_size;
-  //     }
-  //   }
-  // }
-
   .input-container {
+    background-color: #fff;
     width: 80%;
     max-width: 600px;
     display: flex;
@@ -39,7 +19,6 @@ $input_icon_size: 1.5rem;
     align-items: center;
     border-radius: 0.5rem;
     padding: 1rem;
-    background-color: #e2e8f0;
 
     .enter-field {
       flex: 1;
